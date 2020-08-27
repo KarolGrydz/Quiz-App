@@ -3,7 +3,7 @@ import { fetchQuizQuestions, Difficulty, QuestionState } from './API';
 //Questions
 import { QuestionCard } from './components/QuestionCard';
 
-import { GlobalStyle } from './App.styles';
+import { GlobalStyle, Wrapper } from './App.styles';
 
 export type AnswerObject = {
   question: string;
@@ -68,14 +68,14 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
-      <div className='App'>
+      <Wrapper>
         <h1>Quize app</h1>
         {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-          <button className='start' onClick={startTrivia}>
+          <button className="start" onClick={startTrivia}>
             Start
           </button>
         ) : null}
-        {!gameOver && <p className='score'>Score: {score} </p>}
+        {!gameOver && <p className="score">Score: {score} </p>}
         {loading && <p>Loading questions...</p>}
         {!loading && !gameOver && (
           <QuestionCard
@@ -91,11 +91,11 @@ const App = () => {
         !loading &&
         userAnswers.length === number + 1 &&
         number !== TOTAL_QUESTIONS - 1 ? (
-          <button className='next' onClick={nextQuestion}>
+          <button className="next" onClick={nextQuestion}>
             Next question
           </button>
         ) : null}
-      </div>
+      </Wrapper>
     </>
   );
 };
