@@ -1,5 +1,5 @@
 import React from 'react';
-import { AnswerObject } from '../App';
+import { AnswerObject } from '../context/context';
 import { Wrapper, ButtonWrapper } from './QuestionCard.style';
 
 type Props = {
@@ -21,7 +21,7 @@ export const QuestionCard: React.FC<Props> = ({
 }) => {
   return (
     <Wrapper>
-      <p className="number">
+      <p className='number'>
         Question: {questionNr} / {totalQuestions}
       </p>
       <p dangerouslySetInnerHTML={{ __html: question }} />

@@ -1,29 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { fetchQuizQuestions, Difficulty, QuestionState } from './API';
+import { StateContext, DispatchContext, AnswerObject } from './context/context';
+
 //Questions
 import { QuestionCard } from './components/QuestionCard';
 
 import { GlobalStyle, Wrapper } from './App.styles';
 
-export type AnswerObject = {
-  question: string;
-  answer: string;
-  correct: boolean;
-  correntAnswer: string;
-};
-
-const TOTAL_QUESTIONS = 10;
-
 const App = () => {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState<QuestionState[]>([]);
   const [number, setNumber] = useState(0);
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
 
+  const state = useContext(StateContext);
+  const dispatch = useContext(DispatchContext);
+  const { test, TOTAL_QUESTIONS, loading } = state;
+
+  // dispatch({ type: 'setLoading', payload: 'true' }); zamknac to w funkcji
+
   const startTrivia = async () => {
-    setLoading(true);
+    // setLoading(true);
+    dispatch({ type: 'setLoading', payload: !loading });
+    console.log(loading);
     setGameOver(false);
 
     const newQuestions = await fetchQuizQuestions(
@@ -36,7 +37,7 @@ const App = () => {
     setScore(0);
     setUserAnswers([]);
     setNumber(0);
-    setLoading(false);
+    dispatch({ type: 'setLoading', payload: false });
   };
 
   const checkAnswer = (e: any) => {
@@ -71,11 +72,11 @@ const App = () => {
       <Wrapper>
         <h1>Quize app</h1>
         {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-          <button className="start" onClick={startTrivia}>
+          <button className='start' onClick={startTrivia}>
             Start
           </button>
         ) : null}
-        {!gameOver && <p className="score">Score: {score} </p>}
+        {!gameOver && <p className='score'>Score: {score} </p>}
         {loading && <p>Loading questions...</p>}
         {!loading && !gameOver && (
           <QuestionCard
@@ -91,7 +92,7 @@ const App = () => {
         !loading &&
         userAnswers.length === number + 1 &&
         number !== TOTAL_QUESTIONS - 1 ? (
-          <button className="next" onClick={nextQuestion}>
+          <button className='next' onClick={nextQuestion}>
             Next question
           </button>
         ) : null}
