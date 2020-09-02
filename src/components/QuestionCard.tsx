@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
+import { StateContext } from '../context/context';
 import { AnswerObject } from '../context/context';
 import { Wrapper, ButtonWrapper } from './QuestionCard.style';
 
@@ -8,7 +9,6 @@ type Props = {
   callback: any;
   userAnswer: AnswerObject | undefined;
   questionNr: number;
-  totalQuestions: number;
 };
 
 export const QuestionCard: React.FC<Props> = ({
@@ -17,12 +17,13 @@ export const QuestionCard: React.FC<Props> = ({
   callback,
   userAnswer,
   questionNr,
-  totalQuestions,
 }) => {
+  const state = useContext(StateContext);
+  const { TOTAL_QUESTIONS } = state;
   return (
     <Wrapper>
       <p className='number'>
-        Question: {questionNr} / {totalQuestions}
+        Question: {questionNr} / {TOTAL_QUESTIONS}
       </p>
       <p dangerouslySetInnerHTML={{ __html: question }} />
       <div>

@@ -8,7 +8,6 @@ import { QuestionCard } from './components/QuestionCard';
 import { GlobalStyle, Wrapper } from './App.styles';
 
 const App = () => {
-  // const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState<QuestionState[]>([]);
   const [number, setNumber] = useState(0);
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
@@ -17,12 +16,9 @@ const App = () => {
 
   const state = useContext(StateContext);
   const dispatch = useContext(DispatchContext);
-  const { test, TOTAL_QUESTIONS, loading } = state;
-
-  // dispatch({ type: 'setLoading', payload: 'true' }); zamknac to w funkcji
+  const { TOTAL_QUESTIONS, loading } = state;
 
   const startTrivia = async () => {
-    // setLoading(true);
     dispatch({ type: 'setLoading', payload: !loading });
     console.log(loading);
     setGameOver(false);
@@ -81,7 +77,6 @@ const App = () => {
         {!loading && !gameOver && (
           <QuestionCard
             questionNr={number + 1}
-            totalQuestions={TOTAL_QUESTIONS}
             question={questions[number].question}
             answers={questions[number].answers}
             userAnswer={userAnswers ? userAnswers[number] : undefined}
