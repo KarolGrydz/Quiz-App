@@ -1,13 +1,11 @@
 export const reducer = (draft: any, action: any) => {
   switch (action.type) {
-    case 'setLoading':
-      {
-        draft.loading = action.payload;
-      }
+    case 'setQuestions':
+      draft.questions = action.payload;
       break;
-    case 'changeValue': {
+    case 'changeValue':
       draft[action.name] = action.payload;
-    }
+      break;
     default:
       return;
   }

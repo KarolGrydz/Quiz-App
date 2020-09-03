@@ -14,16 +14,16 @@ export type InitialStateProps = {
   questions: any;
   TOTAL_QUESTIONS: any;
   gameOver: boolean;
-  userAnserws: AnswerObject[];
-  loading: boolean;
-  score: number;
-  number: number;
+  userAnswers: AnswerObject[] | any;
+  score: number | any;
+  number: any;
   test: string;
+  loading: boolean;
 };
 
 type DispatchProp = {
   type: any;
-  name: string;
+  name: string | undefined;
   payload: any;
 };
 
