@@ -6,7 +6,7 @@ import { Wrapper, ButtonWrapper } from './QuestionCard.style';
 type Props = {
   question: string;
   answers: string[];
-  callback: any;
+  // callback: any;
   userAnswer: AnswerObject | undefined;
   questionNr: number;
 };
@@ -14,7 +14,6 @@ type Props = {
 export const QuestionCard: React.FC<Props> = ({
   question,
   answers,
-  callback,
   userAnswer,
   questionNr,
 }) => {
@@ -22,7 +21,7 @@ export const QuestionCard: React.FC<Props> = ({
   const { TOTAL_QUESTIONS } = state;
   return (
     <Wrapper>
-      <p className='number'>
+      <p className="number">
         Question: {questionNr} / {TOTAL_QUESTIONS}
       </p>
       <p dangerouslySetInnerHTML={{ __html: question }} />
@@ -33,7 +32,7 @@ export const QuestionCard: React.FC<Props> = ({
             correct={userAnswer?.correntAnswer === answer}
             userClicked={userAnswer?.answer === answer}
           >
-            <button disabled={userAnswer ? true : false} onClick={callback}>
+            <button disabled={userAnswer ? true : false}>
               <span dangerouslySetInnerHTML={{ __html: answer }} />
             </button>
           </ButtonWrapper>

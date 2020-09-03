@@ -5,6 +5,9 @@ export const reducer = (draft: any, action: any) => {
         draft.loading = action.payload;
       }
       break;
+    case 'changeValue': {
+      draft[action.name] = action.payload;
+    }
     default:
       return;
   }

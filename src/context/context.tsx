@@ -23,6 +23,7 @@ export type InitialStateProps = {
 
 type DispatchProp = {
   type: any;
+  name: string;
   payload: any;
 };
 
