@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import { fetchQuizQuestions, Difficulty } from '../API';
+import { fetchQuizQuestions } from '../API';
 import { StateContext, DispatchContext } from '../context/context';
 
-export const StartButton = () => {
+export const StartButton: React.FunctionComponent = () => {
   const state = useContext(StateContext);
   const dispatch = useContext(DispatchContext);
-  const { TOTAL_QUESTIONS, gameOver } = state;
+  const { TOTAL_QUESTIONS, gameOver, difficultLevel } = state;
 
   const startTrivia = async () => {
     dispatch({ type: 'changeValue', name: 'loading', payload: true });
@@ -13,7 +13,7 @@ export const StartButton = () => {
 
     const newQuestions = await fetchQuizQuestions(
       TOTAL_QUESTIONS,
-      Difficulty.EASY
+      difficultLevel
     );
 
     //error handler add
@@ -26,7 +26,7 @@ export const StartButton = () => {
   return (
     <>
       {gameOver && (
-        <button className='start' onClick={startTrivia}>
+        <button className="start" onClick={startTrivia}>
           Start
         </button>
       )}

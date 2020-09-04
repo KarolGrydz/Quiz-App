@@ -6,6 +6,8 @@ import { QuestionCard } from './components/QuestionCard';
 import { StartButton } from './components/StartButton';
 import { NextQuestionButton } from './components/NextQuestionButton';
 import { QuestionNumberButton } from './components/QuestionNumberButton';
+import { DifficultButton } from './components/DifficultButton';
+import { MaxScore } from './components/MaxScore';
 
 import { GlobalStyle, Wrapper } from './App.styles';
 
@@ -20,7 +22,9 @@ const App = () => {
         <h1>Quize app</h1>
         <StartButton />
         <QuestionNumberButton />
-        {!gameOver && <p className='score'>Score: {score} </p>}
+        <DifficultButton />
+        {!gameOver && <p className="score">Score: {score} </p>}
+        <MaxScore />
         {loading && <p>Loading questions...</p>}
         {!loading && number !== undefined && !gameOver && <QuestionCard />}
         <NextQuestionButton />

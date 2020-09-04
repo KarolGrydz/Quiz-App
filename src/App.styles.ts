@@ -36,6 +36,13 @@ export const Wrapper = styled.div`
     margin: 0;
   }
 
+  .high-score {
+    font-size: 2rem;
+    margin: 0;
+    color: #210000;
+    font-weight: bold;
+  }
+
   h1,
   h2 {
     font-family: Fascinate Inline, Haettenschweiler, 'Arial Narrow Bold',

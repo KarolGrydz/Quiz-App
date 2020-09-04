@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { StateContext, DispatchContext } from '../context/context';
 
-export const NextQuestionButton = () => {
+export const NextQuestionButton: React.FunctionComponent = () => {
   const state = useContext(StateContext);
   const dispatch = useContext(DispatchContext);
   const { TOTAL_QUESTIONS, gameOver, number, loading, userAnswers } = state;
@@ -22,7 +22,7 @@ export const NextQuestionButton = () => {
       !loading &&
       userAnswers?.length === number + 1 &&
       number !== TOTAL_QUESTIONS - 1 ? (
-        <button className='next' onClick={nextQuestion}>
+        <button className="next" onClick={nextQuestion}>
           Next question
         </button>
       ) : null}

@@ -10,6 +10,11 @@ export type AnswerObject = {
   correntAnswer: string;
 };
 
+export type DifficultyPoints = {
+  difficulty: string;
+  point: number;
+};
+
 export type InitialStateProps = {
   questions: any;
   TOTAL_QUESTIONS: any;
@@ -19,6 +24,9 @@ export type InitialStateProps = {
   number: any;
   test: string;
   loading: boolean;
+  difficultLevel: string | any;
+  maxScore: any;
+  pointArr: [DifficultyPoints, DifficultyPoints, DifficultyPoints] | any;
 };
 
 type DispatchProp = {

@@ -1,5 +1,9 @@
 import React, { useContext } from 'react';
-import { StateContext, DispatchContext } from '../context/context';
+import {
+  StateContext,
+  DispatchContext,
+  DifficultyPoints,
+} from '../context/context';
 import { Wrapper, ButtonWrapper } from './QuestionCard.style';
 
 export const QuestionCard: React.FunctionComponent = () => {
@@ -12,31 +16,27 @@ export const QuestionCard: React.FunctionComponent = () => {
     questions,
     userAnswers,
     score,
+    difficultLevel,
+    pointArr,
   } = state;
 
-  const question = questions[number].question;
-  const answers = questions[number].answers;
-  const userAnswer = userAnswers ? userAnswers[number] : undefined;
+  const question: string = questions[number].question;
+  const answers: string[] = questions[number].answers;
+  const userAnswer: any = userAnswers ? userAnswers[number] : undefined;
 
   const checkAnswer = (e: any) => {
-    console.log(number);
     if (!gameOver) {
       const answer = e.currentTarget.childNodes[0].textContent; // e.currentTarget.value
-
       const correct = questions[number].correct_answer === answer;
-      if (correct)
-        dispatch({
-          type: 'changeValue',
-          name: 'score',
-          payload: score + 1,
-        });
-
       const answerObject = {
         question: questions[number].question,
         answer,
         correct,
         correntAnswer: questions[number].correct_answer,
       };
+
+      if (correct) addScore();
+
       dispatch({
         type: 'changeValue',
         name: 'userAnswers',
@@ -45,9 +45,21 @@ export const QuestionCard: React.FunctionComponent = () => {
     }
   };
 
+  const addScore = (): void => {
+    pointArr.map((elem: DifficultyPoints) =>
+      elem.difficulty === difficultLevel
+        ? dispatch({
+            type: 'changeValue',
+            name: 'score',
+            payload: score + elem.point,
+          })
+        : null
+    );
+  };
+
   return (
     <Wrapper>
-      <p className='number'>
+      <p className="number">
         Question: {number + 1} / {TOTAL_QUESTIONS}
       </p>
       <p dangerouslySetInnerHTML={{ __html: question }} />
