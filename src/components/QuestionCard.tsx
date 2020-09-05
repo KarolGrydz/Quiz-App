@@ -18,6 +18,7 @@ export const QuestionCard: React.FunctionComponent = () => {
     score,
     difficultLevel,
     pointArr,
+    maxScore,
   } = state;
 
   const question: string = questions[number].question;
@@ -36,6 +37,12 @@ export const QuestionCard: React.FunctionComponent = () => {
       };
 
       if (correct) addScore();
+      if (number + 1 === TOTAL_QUESTIONS)
+        dispatch({
+          type: 'changeValue',
+          name: 'gameOver',
+          payload: true,
+        });
 
       dispatch({
         type: 'changeValue',
@@ -46,20 +53,32 @@ export const QuestionCard: React.FunctionComponent = () => {
   };
 
   const addScore = (): void => {
-    pointArr.map((elem: DifficultyPoints) =>
-      elem.difficulty === difficultLevel
-        ? dispatch({
-            type: 'changeValue',
-            name: 'score',
-            payload: score + elem.point,
-          })
-        : null
-    );
+    pointArr.map((elem: DifficultyPoints) => {
+      if (elem.difficulty === difficultLevel)
+        dispatch({
+          type: 'changeValue',
+          name: 'score',
+          payload: score + elem.point,
+        });
+      if (score + elem.point >= maxScore) {
+        dispatch({
+          type: 'changeValue',
+          name: 'maxScore',
+          payload: score + elem.point,
+        });
+        upDateMaxScore(score + elem.point);
+      }
+    });
+  };
+
+  const upDateMaxScore = (score: any): void => {
+    const addScore: any = parseInt(score);
+    localStorage.setItem('maxScore', addScore);
   };
 
   return (
     <Wrapper>
-      <p className="number">
+      <p className='number'>
         Question: {number + 1} / {TOTAL_QUESTIONS}
       </p>
       <p dangerouslySetInnerHTML={{ __html: question }} />

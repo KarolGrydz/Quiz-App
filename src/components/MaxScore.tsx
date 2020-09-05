@@ -1,16 +1,36 @@
-import React, { useContext, useEffect } from 'react';
-import { StateContext } from '../context/context';
+import React, { useContext, useEffect, useState } from 'react';
+import { StateContext, DispatchContext } from '../context/context';
 
 export const MaxScore: React.FunctionComponent = () => {
   const state = useContext(StateContext);
-  const { gameOver } = state;
-  let { maxScore } = state;
+  const dispatch = useContext(DispatchContext);
+  const { gameOver, maxScore } = state;
+  const [maxScoreLocalStorage, setDatemaxScoreLocalStorage] = useState(
+    localStorage.getItem('maxScore' || 0)
+  );
 
   useEffect((): any => {
-    if (localStorage) maxScore = localStorage.getItem('maxScore');
-  }, [maxScore]);
+    setDatemaxScoreLocalStorage(localStorage.getItem('maxScore'));
+    dispatch({
+      type: 'changeValue',
+      name: 'maxScore',
+      payload: localStorage.getItem('maxScore'),
+    });
+  }, []);
 
   return (
-    <>{!gameOver && <p className="high-score">High Score: {maxScore} </p>}</>
+    <>
+      {console.log(maxScore)}
+      {!gameOver && (
+        <p className='high-score'>
+          High Score:{' '}
+          {maxScoreLocalStorage
+            ? maxScoreLocalStorage > maxScore
+              ? maxScoreLocalStorage
+              : maxScore
+            : maxScore}{' '}
+        </p>
+      )}
+    </>
   );
 };

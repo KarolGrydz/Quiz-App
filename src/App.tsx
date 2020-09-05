@@ -8,6 +8,7 @@ import { NextQuestionButton } from './components/NextQuestionButton';
 import { QuestionNumberButton } from './components/QuestionNumberButton';
 import { DifficultButton } from './components/DifficultButton';
 import { MaxScore } from './components/MaxScore';
+import { RestartButton } from './components/RestartButton';
 
 import { GlobalStyle, Wrapper } from './App.styles';
 
@@ -23,11 +24,12 @@ const App = () => {
         <StartButton />
         <QuestionNumberButton />
         <DifficultButton />
-        {!gameOver && <p className="score">Score: {score} </p>}
+        {!gameOver && <p className='score'>Score: {score} </p>}
         <MaxScore />
         {loading && <p>Loading questions...</p>}
         {!loading && number !== undefined && !gameOver && <QuestionCard />}
         <NextQuestionButton />
+        <RestartButton />
       </Wrapper>
     </>
   );
