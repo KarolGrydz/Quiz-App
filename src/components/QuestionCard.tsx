@@ -37,12 +37,8 @@ export const QuestionCard: React.FunctionComponent = () => {
       };
 
       if (correct) addScore();
-      if (number + 1 === TOTAL_QUESTIONS)
-        dispatch({
-          type: 'changeValue',
-          name: 'gameOver',
-          payload: true,
-        });
+      if (number + 1 === TOTAL_QUESTIONS) endGame();
+      console.log(number + 1, TOTAL_QUESTIONS);
 
       dispatch({
         type: 'changeValue',
@@ -74,6 +70,14 @@ export const QuestionCard: React.FunctionComponent = () => {
   const upDateMaxScore = (score: any): void => {
     const addScore: any = parseInt(score);
     localStorage.setItem('maxScore', addScore);
+  };
+
+  const endGame = (): void => {
+    dispatch({
+      type: 'changeValue',
+      name: 'end',
+      payload: true,
+    });
   };
 
   return (

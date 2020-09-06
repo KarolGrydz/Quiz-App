@@ -16,21 +16,9 @@ export const MaxScore: React.FunctionComponent = () => {
       name: 'maxScore',
       payload: localStorage.getItem('maxScore'),
     });
-  }, []);
+  });
 
   return (
-    <>
-      {console.log(maxScore)}
-      {!gameOver && (
-        <p className='high-score'>
-          High Score:{' '}
-          {maxScoreLocalStorage
-            ? maxScoreLocalStorage > maxScore
-              ? maxScoreLocalStorage
-              : maxScore
-            : maxScore}{' '}
-        </p>
-      )}
-    </>
+    <>{!gameOver && <p className='high-score'>High Score: {maxScore} </p>}</>
   );
 };

@@ -8,7 +8,10 @@ export const initialState = {
   test: 'test',
   loading: false,
   difficultLevel: 'easy',
-  maxScore: 0,
+  maxScore: localStorage.getItem('maxScore' || 0),
+  end: false,
+  category: null,
+  errorHandler: false,
   pointArr: [
     {
       difficulty: 'easy',

@@ -26,6 +26,9 @@ export type InitialStateProps = {
   loading: boolean;
   difficultLevel: string | any;
   maxScore: any;
+  end: boolean;
+  category: string | null;
+  errorHandler: boolean;
   pointArr: [DifficultyPoints, DifficultyPoints, DifficultyPoints] | any;
 };
 
