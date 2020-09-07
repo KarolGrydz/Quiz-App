@@ -19,12 +19,12 @@ export const DifficultButton: React.FunctionComponent = () => {
     <>
       {gameOver && (
         <>
-          <h2>Select diffulcty (easy = 1 point, hard = 3 points)</h2>
+          <h2>Select difficulty (easy = 1 point, hard = 3 points)</h2>
           <select
-            name="diffulcty_level"
-            id="diffulcty_level"
+            name='diffulcty_level'
+            id='diffulcty_level'
             onChange={onHandler}
-            className="start"
+            className='start'
           >
             <option value={Difficulty.EASY}>EASY</option>
             <option value={Difficulty.MEDIUM}>MEDIUM</option>

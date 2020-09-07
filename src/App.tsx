@@ -22,7 +22,7 @@ const App = () => {
     <>
       <GlobalStyle />
       <Wrapper>
-        <h1>Quize app</h1>
+        <h1>Quiz App</h1>
         {!errorHandler ? (
           <>
             <StartButton />

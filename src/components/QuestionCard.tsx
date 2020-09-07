@@ -38,7 +38,6 @@ export const QuestionCard: React.FunctionComponent = () => {
 
       if (correct) addScore();
       if (number + 1 === TOTAL_QUESTIONS) endGame();
-      console.log(number + 1, TOTAL_QUESTIONS);
 
       dispatch({
         type: 'changeValue',
@@ -49,20 +48,21 @@ export const QuestionCard: React.FunctionComponent = () => {
   };
 
   const addScore = (): void => {
-    pointArr.map((elem: DifficultyPoints) => {
-      if (elem.difficulty === difficultLevel)
+    pointArr.map((elem: DifficultyPoints): void => {
+      if (elem.difficulty === difficultLevel) {
         dispatch({
           type: 'changeValue',
           name: 'score',
           payload: score + elem.point,
         });
-      if (score + elem.point >= maxScore) {
-        dispatch({
-          type: 'changeValue',
-          name: 'maxScore',
-          payload: score + elem.point,
-        });
-        upDateMaxScore(score + elem.point);
+        if (score + elem.point >= maxScore) {
+          dispatch({
+            type: 'changeValue',
+            name: 'maxScore',
+            payload: score + elem.point,
+          });
+          upDateMaxScore(score + elem.point);
+        }
       }
     });
   };

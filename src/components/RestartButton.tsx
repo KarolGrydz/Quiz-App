@@ -9,7 +9,6 @@ export const RestartButton: React.FunctionComponent = () => {
 
   return (
     <>
-      {console.log(errorHandler)}
       {errorHandler || end ? (
         <button className='next' onClick={resetGame}>
           Restar Game
