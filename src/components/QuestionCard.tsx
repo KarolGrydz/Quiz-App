@@ -37,7 +37,7 @@ export const QuestionCard: React.FunctionComponent = () => {
       };
 
       if (correct) addScore();
-      if (number + 1 === TOTAL_QUESTIONS) endGame();
+      if (number + 1 === parseInt(TOTAL_QUESTIONS)) endGame();
 
       dispatch({
         type: 'changeValue',

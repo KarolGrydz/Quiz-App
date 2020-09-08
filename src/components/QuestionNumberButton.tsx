@@ -10,7 +10,7 @@ export const QuestionNumberButton: React.FunctionComponent = () => {
     dispatch({
       type: 'changeValue',
       name: 'TOTAL_QUESTIONS',
-      payload: e.target.value,
+      payload: parseInt(e.target.value),
     });
   };
 

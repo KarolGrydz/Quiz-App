@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  background-image: url(${BGImage}); 
+  background-image: url(/projects/games/Quiz-App${BGImage}); 
   background-size: cover;
   margin: 0;
   padding: 0 20px;
@@ -26,7 +26,7 @@ body {
 }
 `;
 
-///projects/games/Quiz-App
+//
 
 export const Wrapper = styled.div`
   display: -webkit-box;
