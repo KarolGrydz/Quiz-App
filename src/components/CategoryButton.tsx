@@ -27,7 +27,11 @@ export const CategoryButton: React.FunctionComponent = () => {
             onChange={onToggle}
           >
             {categories.map((category: any) => (
-              <option key={category.id} value={category.id}>
+              <option
+                key={category.id}
+                value={category.id}
+                data-testid={category.name}
+              >
                 {category.name}
               </option>
             ))}

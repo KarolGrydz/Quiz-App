@@ -26,9 +26,15 @@ export const DifficultButton: React.FunctionComponent = () => {
             onChange={onHandler}
             className='start'
           >
-            <option value={Difficulty.EASY}>EASY</option>
-            <option value={Difficulty.MEDIUM}>MEDIUM</option>
-            <option value={Difficulty.HARD}>HARD</option>
+            <option data-testid={Difficulty.EASY} value={Difficulty.EASY}>
+              EASY
+            </option>
+            <option data-testid={Difficulty.MEDIUM} value={Difficulty.MEDIUM}>
+              MEDIUM
+            </option>
+            <option data-testid={Difficulty.HARD} value={Difficulty.HARD}>
+              HARD
+            </option>
           </select>
         </>
       )}

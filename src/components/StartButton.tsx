@@ -11,8 +11,6 @@ export const StartButton: React.FunctionComponent = () => {
     dispatch({ type: 'changeValue', name: 'loading', payload: true });
     dispatch({ type: 'changeValue', name: 'gameOver', payload: false });
 
-    console.log(category);
-
     const newQuestions = await fetchQuizQuestions(
       TOTAL_QUESTIONS,
       difficultLevel,

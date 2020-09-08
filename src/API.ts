@@ -23,7 +23,6 @@ export const fetchQuizQuestions = async (
   category?: number | any
 ) => {
   const endpoint = endpoints(amount, difficulty, category);
-  console.log(endpoint);
   const data = await (await fetch(endpoint)).json();
   return data.results.map((question: Question) => ({
     ...question,
